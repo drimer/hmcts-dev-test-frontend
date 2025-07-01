@@ -1,0 +1,68 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% extends "template.njk" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Task "{{ task.title }}"</h1>
+
+  {% if task %}
+    {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "ID"
+        },
+        value: {
+          text: task.id
+        }
+      },
+      {
+        key: {
+          text: "Title"
+        },
+        value: {
+          html: task.title
+        }
+      },
+      {
+        key: {
+          text: "Description"
+        },
+        value: {
+          html: task.description
+        }
+      },
+      {
+        key: {
+          text: "Status"
+        },
+        value: {
+          html: task.status
+        },
+        actions: {
+          items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "Change status"
+              }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Created Date"
+        },
+        value: {
+          html: task.createdDate
+        },
+        actions: {
+          items: [
+          ]
+        }
+      }
+    ]
+  }) -}}
+  {% endif %}
+
+{% endblock %}
