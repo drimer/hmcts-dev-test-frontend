@@ -1,11 +1,11 @@
 import { Application } from 'express';
 import axios from 'axios';
 
+
 export default function (app: Application): void {
   app.get('/', async (req, res) => {
     try {
       const response = await axios.get('http://localhost:4000/tasks');
-      console.log(response.data);
       res.render('home', { "tasks": response.data });
     } catch (error) {
       console.error('Error making request:', error);
@@ -16,12 +16,23 @@ export default function (app: Application): void {
   app.get('/tasks/:id', async (req, res) => {
     try {
       const response = await axios.get(`http://localhost:4000/tasks/${req.params.id}`);
-      console.log(response.data);
-      res.render('task', { "task": response.data });
       res.render('task', { "task": response.data });
     } catch (error) {
       console.error('Error making request:', error);
-      res.render('task', {});
+      res.render('home', {});
+    }
+  });
+
+  app.post('/tasks/:id', async (req, res) => {
+    try {
+      const apiUrl = `http://localhost:4000/tasks/${req.params.id}`;
+      const apiTasksPostRequestDto = { status : req.body.status}
+      await axios.patch(apiUrl, apiTasksPostRequestDto);
+
+      res.redirect(`/tasks/${req.params.id}`);
+    } catch (error) {
+        const response = await axios.get(`http://localhost:4000/tasks/${req.params.id}`);
+        res.render('task', { "task": response.data, "errors": error.response.data });
     }
   });
 }

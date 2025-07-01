@@ -1,68 +1,78 @@
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% extends "template.njk" %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">Task "{{ task.title }}"</h1>
 
-  {% if task %}
-    {{ govukSummaryList({
-    rows: [
-      {
-        key: {
-          text: "ID"
-        },
-        value: {
-          text: task.id
-        }
+  <form action="/tasks/{{ task.id }}" method="post">
+    {{ govukInput({
+      label: {
+        text: 'ID'
       },
-      {
-        key: {
-          text: "Title"
-        },
-        value: {
-          html: task.title
-        }
+      id: "id",
+      name: "id",
+      value: task.id,
+      disabled: true
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: 'Title'
       },
-      {
-        key: {
-          text: "Description"
-        },
-        value: {
-          html: task.description
-        }
+      id: "title",
+      name: "title",
+      value: task.title,
+      disabled: true
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: 'Description'
       },
-      {
-        key: {
-          text: "Status"
+      id: "description",
+      name: "description",
+      value: task.description,
+      disabled: true
+    }) }}
+
+    {% if errors.status %}
+      {{ govukInput({
+        label: {
+          text: 'Status'
         },
-        value: {
-          html: task.status
-        },
-        actions: {
-          items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "Change status"
-              }
-          ]
+        id: "status",
+        name: "status",
+        errorMessage: {
+          text: errors.status
         }
+      }) }}
+    {% else %}
+      {{ govukInput({
+        label: {
+          text: 'Status'
+        },
+        id: "status",
+        name: "status",
+        value: task.status
+      }) }}
+    {% endif %}
+
+    {{ govukInput({
+      label: {
+        text: 'Created'
       },
-      {
-        key: {
-          text: "Created Date"
-        },
-        value: {
-          html: task.createdDate
-        },
-        actions: {
-          items: [
-          ]
-        }
-      }
-    ]
-  }) -}}
-  {% endif %}
+      id: "created-date",
+      name: "createdDate",
+      value: task.createdDate,
+      disabled: true
+    }) }}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 
 {% endblock %}
