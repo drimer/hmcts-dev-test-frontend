@@ -37,4 +37,18 @@ export class ApiClient {
     return response.data　as Task
   }
 
+  async getTask(id: string): Promise<Task> {
+    const response = await axios.get(`${this.baseUrl}/tasks/${id}`)
+    return response.data　as Task
+  }
+
+  async updateTask(id: string, status: string): Promise<Task> {
+    const response = await axios.patch(`${this.baseUrl}/tasks/${id}`, { status })
+    return response.data　as Task
+  }
+
+  async deleteTask(id: string) {
+    await axios.delete(`${this.baseUrl}/tasks/${id}`)
+  }
+
 }
