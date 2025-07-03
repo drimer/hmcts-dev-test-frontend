@@ -35,4 +35,16 @@ export default function (app: Application): void {
         res.render('task', { "task": response.data, "errors": error.response.data });
     }
   });
+
+  app.get('/tasks/:id/delete', async (req, res) => {
+    try {
+      const apiUrl = `http://localhost:4000/tasks/${req.params.id}`;
+      await axios.delete(apiUrl);
+
+      res.redirect(`/`);
+    } catch (error) {
+      const response = await axios.get('http://localhost:4000/tasks');
+      res.render('home', { "tasks": response.data, "errors": error.response.data });
+    }
+  })
 }
