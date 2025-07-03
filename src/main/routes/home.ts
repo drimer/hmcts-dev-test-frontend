@@ -13,6 +13,31 @@ export default function (app: Application): void {
     }
   });
 
+  app.get('/tasks/create', async (req, res) => {
+    res.render('create-task');
+  })
+
+  app.post('/tasks/create', async (req, res) => {
+    try {
+      const apiUrl = `http://localhost:4000/tasks`;
+      const apiTasksPostRequestDto = {
+        "title": req.body.title,
+        "description": req.body.description,
+        "status": req.body.status
+      }
+      await axios.post(apiUrl, apiTasksPostRequestDto);
+
+      res.redirect(`/`);
+    } catch (error) {
+      res.render('create-task', {
+        "title": req.body.title,
+        "description": req.body.description,
+        "status": req.body.status,
+        "errors": error.response.data
+      });
+    }
+  })
+
   app.get('/tasks/:id', async (req, res) => {
     try {
       const response = await axios.get(`http://localhost:4000/tasks/${req.params.id}`);

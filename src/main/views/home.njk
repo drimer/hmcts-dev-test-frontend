@@ -19,6 +19,11 @@
     }) }}
   {% endif %}
 
+  {{ govukButton({
+    text: "Add new task",
+    href: "/tasks/create"
+  }) }}
+
   {% if tasks.length %}
     {% for task in tasks %}
       {{ govukSummaryList({
@@ -58,7 +63,7 @@
             items: [
                {
                  href: "/tasks/" + task.id,
-                 text: "Change",````
+                 text: "Change",
                  visuallyHiddenText: "Change status"
                }
             ]

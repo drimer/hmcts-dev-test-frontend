@@ -1,0 +1,83 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends "template.njk" %}
+
+{% block content %}
+  <form method="post">
+    {% if errors.title %}
+      {{ govukInput({
+        label: {
+          text: 'Title'
+        },
+        id: "title",
+        name: "title",
+        value: title,
+        errorMessage: {
+          text: errors.title
+        }
+      }) }}
+    {% else %}
+      {{ govukInput({
+        label: {
+          text: 'Title'
+        },
+        id: "title",
+        name: "title",
+        value: title
+      }) }}
+    {% endif %}
+
+    {% if errors.description %}
+      {{ govukInput({
+        label: {
+          text: 'Description'
+        },
+        id: "description",
+        name: "description",
+        value: description,
+        errorMessage: {
+          text: errors.description
+        }
+      }) }}
+    {% else %}
+      {{ govukInput({
+        label: {
+          text: 'Desription'
+        },
+        id: "description",
+        name: "description",
+        value: description
+      }) }}
+    {% endif %}
+
+    {% if errors.status %}
+      {{ govukInput({
+        label: {
+          text: 'Status'
+        },
+        id: "status",
+        name: "status",
+        value: status,
+        errorMessage: {
+          text: errors.status
+        }
+      }) }}
+    {% else %}
+      {{ govukInput({
+        label: {
+          text: 'Status'
+        },
+        id: "status",
+        name: "status",
+        value: status
+      }) }}
+    {% endif %}
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
+{% endblock %}
