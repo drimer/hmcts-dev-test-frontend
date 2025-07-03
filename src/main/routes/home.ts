@@ -29,7 +29,7 @@ export default function (app: Application): void {
       const apiTasksPostRequestDto = { status : req.body.status}
       await axios.patch(apiUrl, apiTasksPostRequestDto);
 
-      res.redirect(`/tasks/${req.params.id}`);
+      res.redirect(`/`);
     } catch (error) {
         const response = await axios.get(`http://localhost:4000/tasks/${req.params.id}`);
         res.render('task', { "task": response.data, "errors": error.response.data });
