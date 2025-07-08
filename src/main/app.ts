@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import { glob } from 'glob';
 import favicon from 'serve-favicon';
+import { configureDI } from './di_config';
 
 const { setupDev } = require('./development');
 
@@ -29,10 +30,11 @@ app.use((req, res, next) => {
   next();
 });
 
+const diContainer = configureDI();
 glob
   .sync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
-  .forEach(route => route.default(app));
+  .forEach(route => route.default(app, diContainer));
 
 setupDev(app, developmentMode);
 
