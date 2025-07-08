@@ -92,6 +92,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.3.1"],\
             ["request", "npm:2.88.2"],\
             ["require-directory", "npm:2.1.1"],\
+            ["rsdi", "npm:3.0.4"],\
             ["sass", "npm:1.77.4"],\
             ["sass-loader", "virtual:3a02cceef93055271d0890b855d0c93a770c9c876ee9b808cf9e23d8d1b8581b5b6efcfb80a9768d650dfa22f93777eca81ae9ef4de2301b22a7619649eb692a#npm:14.2.1"],\
             ["serve-favicon", "npm:2.5.0"],\
@@ -12145,6 +12146,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.3.1"],\
             ["request", "npm:2.88.2"],\
             ["require-directory", "npm:2.1.1"],\
+            ["rsdi", "npm:3.0.4"],\
             ["sass", "npm:1.77.4"],\
             ["sass-loader", "virtual:3a02cceef93055271d0890b855d0c93a770c9c876ee9b808cf9e23d8d1b8581b5b6efcfb80a9768d650dfa22f93777eca81ae9ef4de2301b22a7619649eb692a#npm:14.2.1"],\
             ["serve-favicon", "npm:2.5.0"],\
@@ -17265,6 +17267,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/rndm-npm-1.2.0-a1d41d58aa-ff0c54a123.zip/node_modules/rndm/",\
           "packageDependencies": [\
             ["rndm", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["rsdi", [\
+        ["npm:3.0.4", {\
+          "packageLocation": "./.yarn/cache/rsdi-npm-3.0.4-6a1c275d0c-bc417dcc28.zip/node_modules/rsdi/",\
+          "packageDependencies": [\
+            ["rsdi", "npm:3.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\

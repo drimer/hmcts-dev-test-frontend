@@ -9036,6 +9036,7 @@ __metadata:
     prettier: ^3.0.0
     request: ^2.88.2
     require-directory: ^2.1.1
+    rsdi: ^3.0.4
     sass: ^1.65.1
     sass-loader: ^14.0.0
     serve-favicon: ^2.5.0
@@ -13544,6 +13545,13 @@ __metadata:
   version: 1.2.0
   resolution: "rndm@npm:1.2.0"
   checksum: ff0c54a12357267108d7de17b762869e388215e2e3c8147b5bba80d8454ee490c5fdaa40020b8b52ca52b86f13ad6171b4845dd5b7f627e5e2b6195908117c07
+  languageName: node
+  linkType: hard
+
+"rsdi@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "rsdi@npm:3.0.4"
+  checksum: bc417dcc284389379429e8e160456d70e672abd99e010864425832bd8dfb1ab5cafc010870761b209ba2980651106bbe611a21899495c215cd9d0a2a97db9aa1
   languageName: node
   linkType: hard
 

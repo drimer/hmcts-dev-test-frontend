@@ -1,8 +1,13 @@
 import { Application } from 'express';
 import { ApiClient } from '../clients/ApiClient';
+import { AppDIContainer } from '../di_config';
 
 
-export default function (app: Application): void {
+export default function (app: Application, diContainer: AppDIContainer): void {
+
+  const { taskController } = diContainer;
+
+  app.get('/test', taskController.getTasksDashboard)
 
   app.get('/', async (req, res) => {
     try {
