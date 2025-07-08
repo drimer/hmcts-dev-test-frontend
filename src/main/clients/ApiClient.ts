@@ -24,7 +24,7 @@ export class ApiClient {
     this.baseUrl = baseUrl
   }
 
-  async getAllTasks(): Promise<Task> {
+  async getAllTasks(): Promise<Task[]> {
     const response = await axios.get(`${this.baseUrl}/tasks`)
     return response.data.map(
       (task: any) =>

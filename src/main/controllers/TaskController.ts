@@ -1,3 +1,4 @@
+import { Request, Response } from 'express'
 import { ApiClient } from '../clients/ApiClient';
 
 
@@ -7,7 +8,7 @@ export default class TaskController {
     private readonly apiClient: ApiClient
   ) {}
 
-  public async getTasksDashboard(req: any, res: any): Promise<void> {
+  public async getTasksDashboard(req: Request, res: Response): Promise<void> {
     try {
       const tasks = await this.apiClient.getAllTasks();
       res.render('home', { "tasks": tasks });
@@ -17,11 +18,11 @@ export default class TaskController {
     }
   }
 
-  public async getCreateTaskPage(req: any, res: any): Promise<void> {
+  public async getCreateTaskPage(req: Request, res: Response): Promise<void> {
     res.render('create-task');
   }
 
-  public async postCreateTaskPage(req: any, res: any): Promise<void> {
+  public async postCreateTaskPage(req: Request, res: Response): Promise<void> {
     try {
       await this.apiClient.createTask(
         req.body.title,
@@ -40,7 +41,7 @@ export default class TaskController {
     }
   }
 
-  public async getTaskPage(req: any, res: any): Promise<void> {
+  public async getTaskPage(req: Request, res: Response): Promise<void> {
     try {
       const task = await this.apiClient.getTask(req.params.id);
       res.render('task', { "task": task });
@@ -50,7 +51,7 @@ export default class TaskController {
     }
   }
 
-  public async postTaskPage(req: any, res: any): Promise<void> {
+  public async postTaskPage(req: Request, res: Response): Promise<void> {
     try {
       await this.apiClient.updateTask(
         req.params.id,
@@ -63,7 +64,7 @@ export default class TaskController {
     }
   }
 
-  public async deleteTaskPage(req: any, res: any): Promise<void> {
+  public async deleteTaskPage(req: Request, res: Response): Promise<void> {
     try {
       await this.apiClient.deleteTask(req.params.id)
 
