@@ -6,12 +6,14 @@ export class Task {
   title: string
   description: string
   status: string
+  createdDate: string
 
-  constructor(id: number, title: string, description: string, status: string) {
+  constructor(id: number, title: string, description: string, status: string, createdDate?: string) {
     this.id = id
     this.title = title
     this.description = description
     this.status = status
+    this.createdDate = createdDate || new Date().toISOString()
   }
 }
 
