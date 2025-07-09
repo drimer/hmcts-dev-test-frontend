@@ -19,11 +19,6 @@
     }) }}
   {% endif %}
 
-  {{ govukButton({
-    text: "Add new task",
-    href: "/tasks/create"
-  }) }}
-
   {% if tasks.length %}
     {% for task in tasks %}
       {{ govukSummaryList({
@@ -34,6 +29,15 @@
           },
           value: {
             text: task.id
+          },
+          actions: {
+            items: [
+               {
+                 href: "/tasks/" + task.id + "/delete",
+                 text: "Delete task",
+                 visuallyHiddenText: "Delete task"
+               }
+            ]
           }
         },
         {
@@ -84,14 +88,19 @@
       ]
     }) -}}
 
-    {{ govukButton({
-      text: "Delete task",
-      classes: "govuk-button--warning",
-      preventDoubleClick: true,
-      href: "/tasks/" + task.id + "/delete"
-    }) }}
-
     {% endfor %}
+  {% else %}
+    <p class="govuk-hint">
+      You have no tasks. Please use the button below to add a new task.
+    </p>
   {% endif %}
+
+
+  <div>
+    {{ govukButton({
+      text: "Add new task",
+      href: "/tasks/create"
+    }) }}
+  </div>
 
 {% endblock %}
