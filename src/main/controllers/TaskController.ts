@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { ApiClient } from '../clients/ApiClient';
+import { ApiClient } from '../clients/ApiClient'
 
 
 export default class TaskController {
@@ -10,16 +10,16 @@ export default class TaskController {
 
   public async getTasksDashboard(req: Request, res: Response): Promise<void> {
     try {
-      const tasks = await this.apiClient.getAllTasks();
-      res.render('home', { "tasks": tasks });
+      const tasks = await this.apiClient.getAllTasks()
+      res.render('home', { "tasks": tasks })
     } catch (error) {
-      console.error('Error making request:', error);
-      res.render('home', {});
+      console.error('Error making request:', error)
+      res.render('home', {})
     }
   }
 
   public async getCreateTaskPage(req: Request, res: Response): Promise<void> {
-    res.render('create-task');
+    res.render('create-task')
   }
 
   public async postCreateTaskPage(req: Request, res: Response): Promise<void> {
@@ -43,11 +43,11 @@ export default class TaskController {
 
   public async getTaskPage(req: Request, res: Response): Promise<void> {
     try {
-      const task = await this.apiClient.getTask(req.params.id);
-      res.render('task', { "task": task });
+      const task = await this.apiClient.getTask(req.params.id)
+      res.render('task', { "task": task })
     } catch (error) {
-      console.error('Error making request:', error);
-      res.render('home', {});
+      console.error('Error making request:', error)
+      res.render('home', {})
     }
   }
 
@@ -57,10 +57,10 @@ export default class TaskController {
         req.params.id,
         req.body.status
       );
-      res.redirect(`/`);
+      res.redirect(`/`)
     } catch (error) {
-        const task = await this.apiClient.getTask(req.params.id);
-        res.render('task', { "task": task, "errors": error.response.data });
+        const task = await this.apiClient.getTask(req.params.id)
+        res.render('task', { "task": task, "errors": error.response.data })
     }
   }
 
@@ -68,10 +68,10 @@ export default class TaskController {
     try {
       await this.apiClient.deleteTask(req.params.id)
 
-      res.redirect(`/`);
+      res.redirect(`/`)
     } catch (error) {
-      const task = await this.apiClient.getTask(req.params.id);
-      res.render('home', { "tasks": task, "errors": error.response.data });
+      const task = await this.apiClient.getTask(req.params.id)
+      res.render('home', { "tasks": task, "errors": error.response.data })
     }
   }
 
